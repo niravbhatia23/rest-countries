@@ -3,7 +3,7 @@ export function getColumnDefs() {
     {
       field: "flag",
     },
-    { field: "name" },
+    { field: "name", sort: "asc" },
     { field: "population" },
     {
       field: "languages",
