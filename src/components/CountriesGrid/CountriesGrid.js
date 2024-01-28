@@ -3,10 +3,12 @@ import { Grid } from "../Grid";
 import { getColumnDefs } from "./lib/getColumnDefs";
 import { CountriesGridRoot } from "./styles";
 import { Countries } from "../../api/countries";
+import { SearchInput } from "./components/SearchInput";
 
 export const CountriesGrid = () => {
   const [rowData, setRowData] = useState([]);
   const [noRowsMessage, setNoRowsMessage] = useState();
+  const [searchText, setSearchText] = useState("");
 
   const loadCountries = async () => {
     try {
@@ -21,12 +23,22 @@ export const CountriesGrid = () => {
     loadCountries();
   }, []);
 
+  const handleSearchTextChange = (value) => {
+    setSearchText(value);
+  };
+
   return (
     <CountriesGridRoot className={"ag-theme-material"}>
+      <SearchInput
+        searchText={searchText}
+        onSearchTextChange={handleSearchTextChange}
+      />
       <Grid
         gridOptions={{
           rowData,
           columnDefs: getColumnDefs(),
+          quickFilterText: searchText,
+          cacheQuickFilter: true,
         }}
         noRowsMessage={noRowsMessage}
       />
