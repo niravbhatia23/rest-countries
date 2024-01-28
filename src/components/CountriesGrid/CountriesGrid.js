@@ -6,12 +6,15 @@ import { Countries } from "../../api/countries";
 
 export const CountriesGrid = () => {
   const [rowData, setRowData] = useState([]);
+  const [noRowsMessage, setNoRowsMessage] = useState();
 
   const loadCountries = async () => {
     try {
       const countries = await Countries.fetch();
       setRowData(countries);
-    } catch {}
+    } catch {
+      setNoRowsMessage("There was an error fetching countries");
+    }
   };
 
   useEffect(() => {
@@ -20,7 +23,13 @@ export const CountriesGrid = () => {
 
   return (
     <CountriesGridRoot className={"ag-theme-material"}>
-      <Grid rowData={rowData} columnDefs={getColumnDefs()} />
+      <Grid
+        gridOptions={{
+          rowData,
+          columnDefs: getColumnDefs(),
+        }}
+        noRowsMessage={noRowsMessage}
+      />
     </CountriesGridRoot>
   );
 };
