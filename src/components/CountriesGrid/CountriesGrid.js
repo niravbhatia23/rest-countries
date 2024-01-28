@@ -5,7 +5,7 @@ import { CountriesGridRoot } from "./styles";
 import { Countries } from "../../api/countries";
 import { SearchInput } from "./components/SearchInput";
 
-export const CountriesGrid = () => {
+export const CountriesGrid = ({ onSelectCountry }) => {
   const [rowData, setRowData] = useState([]);
   const [noRowsMessage, setNoRowsMessage] = useState();
   const [searchText, setSearchText] = useState("");
@@ -39,6 +39,7 @@ export const CountriesGrid = () => {
           columnDefs: getColumnDefs(),
           quickFilterText: searchText,
           cacheQuickFilter: true,
+          onRowClicked: onSelectCountry
         }}
         noRowsMessage={noRowsMessage}
       />

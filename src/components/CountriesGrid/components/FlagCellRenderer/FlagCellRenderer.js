@@ -1,10 +1,11 @@
 import React from "react";
 import { FlagCellRendererRoot } from "./styles";
+import { Flag } from "../../../Flag";
 
 export const FlagCellRenderer = ({ data: { flag } }) => {
   return (
     <FlagCellRendererRoot>
-      <img width={40} height={30} src={flag} />
+      <Flag url={flag} />
     </FlagCellRendererRoot>
   );
 };

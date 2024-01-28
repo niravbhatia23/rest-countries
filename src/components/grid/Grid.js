@@ -25,10 +25,15 @@ export const Grid = ({ gridOptions, noRowsMessage = "No data available" }) => {
     }
   }, [noRowsOverlayComponentParams]);
 
+  const onFirstDataRendered = (params) => {
+    params.api.sizeColumnsToFit();
+  };
+
   return (
     <AgGridReact
       {...gridOptions}
       ref={gridRef}
+      onFirstDataRendered={onFirstDataRendered}
       noRowsOverlayComponent={NoRowsOverlay}
       noRowsOverlayComponentParams={noRowsOverlayComponentParams}
     />
