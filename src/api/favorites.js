@@ -7,7 +7,7 @@ export class Favorites {
 
   static isFavorite(name) {
     const currentFavs = this.fetch();
-    return currentFavs.includes(name);
+    return currentFavs && currentFavs.includes(name);
   }
 
   static toggleFavorite(name) {
