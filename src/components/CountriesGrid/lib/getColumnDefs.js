@@ -7,6 +7,7 @@ export function getColumnDefs() {
     {
       cellRenderer: FavoriteButtonRenderer,
       maxWidth: 100,
+      headerName: 'Favorite'
     },
     {
       field: "flag",
